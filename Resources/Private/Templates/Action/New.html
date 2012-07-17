@@ -1,0 +1,23 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+	<aside class="navigation">
+		<ul class="list">
+			<f:for each="{issues}" as="issue">
+			<li>
+				<f:link.action action="tasks" arguments="{number: issue.number, repository: issue.repository.full_name}">
+					<img src="{issue.user.avatar_url}" width="32px" />
+					<b>{issue.title}</b>
+				</f:link.action>
+			</li>
+			</f:for>
+	  	</ul>
+	</aside>
+	<div class="content">
+		<section class="body">
+			<f:form action="create">
+				<f:form.textfield name="action" />
+			</f:form>
+	    </section>
+	</div>
+</f:section>

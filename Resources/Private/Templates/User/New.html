@@ -1,0 +1,12 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Index view of User controller</f:section>
+
+<f:section name="Content">
+	<div class="content">
+		<section class="body">
+			{namespace cm=Foo\ContentManagement\ViewHelpers}
+			<cm:render.form class="\Brain\Domain\Model\User" controllerCallback="create" />
+	    </section>
+	</div>
+</f:section>

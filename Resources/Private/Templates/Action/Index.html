@@ -1,0 +1,81 @@
+<f:layout name="Default" />
+{namespace b=Brain\ViewHelpers}
+
+<f:section name="Content">
+	<aside class="navigation">
+		<ul class="list">
+			<f:for each="{actions}" as="action">
+			<li>
+				<f:link.action arguments="{action: action}">
+					<b:gravatar email="{action.assignee.email}" size="32"/>
+					<b>{action.title}</b>
+				</f:link.action>
+			</li>
+			</f:for>
+	  	</ul>
+	</aside>
+	<div class="content">
+		<section class="header">
+			<b:gravatar email="{currentAction.assignee.email}" size="48"/>
+			<h1>{currentAction.title}</h1>
+			<p>{currentAction.owner.username} created this issue [creationDate] ago and assigned it to {currentAction.assignee.username}</p>
+
+			<f:form action="create" class="well form-action-new">
+				<div>
+					<f:form.textarea name="action" class="input search-query mention" rows="1" cols="10" />
+				</div>
+      			<button type="submit" class="btn">Search</button>
+			</f:form>
+
+		</section>
+		<section class="body">
+	        <f:format.raw>{currentIssue.body_html}</f:format.raw>
+	    </section>
+		<section class="comments">
+			<f:for each="{currentIssue.comments}" as="comment">
+			<div class="comment">
+				<img src="{comment.user.avatar_url}" width="32px" class="pull-left"/>
+				<h3>{comment.user.login} commented {comment.created_at} ago</h3>
+	        	<f:format.raw>{comment.body_html}</f:format.raw>
+	        </div>
+	    	</f:for>
+	    </section>
+	</div>
+
+	<script type="text/javascript">
+		var users = {userOptions -> f:format.raw()};
+		$(function () {
+
+			$(".form-action-new").submit(function(){
+				$("textarea.mention").val($("textarea.mention").data("messageText"));
+			});
+
+		  $('textarea.mention').mentionsInput({
+		  	templates: {
+		  		mentionItemSyntax: _.template('<%= triggerChar %><%= value %>'),
+		  		mentionItemHighlight: _.template('<strong><span><%= value %></span></strong>')
+		  	},
+		  	minChars: 0,
+		    triggerChar: ["@", "#"],
+		    onDataRequest:function (mode, query, callback, triggerChar) {
+		      if(triggerChar == "@"){      
+		        var data = users;
+		      } else if (triggerChar == "#") {
+		        var data = [
+		          { id:5, name:'decor', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'project' },
+		          { id:6, name:'bva', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'project' },
+		          { id:7, name:'tenrit', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'project' },
+		          { id:8, name:'neuland', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'project' },
+		          { id:9, name:'rennrad', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'project' }
+		        ];
+		      }
+		      data = _.filter(data, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1;});
+		      console.log(query, data);
+
+		      callback.call(this, data);
+		    }
+		  });
+
+		});
+	</script>
+</f:section>

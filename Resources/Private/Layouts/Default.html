@@ -1,0 +1,51 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]--> <!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]--> <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<f:base />
+	<title></title>
+
+	<link rel="stylesheet" href="{f:uri.resource(package: 'Brain', path:'less/main.css')}" />
+	<script src="{f:uri.resource(package: 'Brain', path:'lib/jquery.1.7.2.min.js')}"></script>
+</head>
+<body>
+	<aside class="smartbar">
+		<ul class="nav">
+			<li>
+				<f:link.action action="index" controller="Action"><i class="icon-screenshot" title="Focus"></i></f:link.action>
+			</li>
+			<li>
+				<f:link.action action="index" controller="Action"><i class="icon-tasks" title="Tasks"></i></f:link.action>
+			</li>
+			<li>
+				<f:link.action action="logins"><i class="icon-book" title="Logins"></i></f:link.action>
+			</li>
+			<li>
+				<f:link.action action="index" controller="User" ><i class="icon-user" title="Users"></i></f:link.action>
+			</li>
+		</ul>
+	</aside>
+	<f:render section="Content" />
+
+	<script src="{f:uri.resource(package: 'Brain', path:'lib/underscore-1.3.3-min.js')}"></script>
+	<script src="{f:uri.resource(package: 'Brain', path:'lib/ember.min.js')}"></script>
+	<script src="{f:uri.resource(package: 'Brain', path:'lib/jquery-mentions-input/lib/jquery.elastic.js')}"></script>
+	<script src="{f:uri.resource(package: 'Brain', path:'lib/jquery-mentions-input/jquery.mentionsInput.js')}"></script>
+	<script src="{f:uri.resource(package: 'Brain', path:'lib/jquery-mentions-input/jquery.mentionsInput.js')}"></script>
+
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-transition.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-alert.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-modal.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-dropdown.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-scrollspy.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-tab.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-tooltip.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-popover.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-button.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-collapse.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-carousel.js')}"></script>
+    <script src="{f:uri.resource(package: 'Brain', path:'lib/bootstrap/js/bootstrap-typeahead.js')}"></script>
+</body>
+</html>

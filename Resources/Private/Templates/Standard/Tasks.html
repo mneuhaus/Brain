@@ -1,0 +1,35 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+	<aside class="navigation">
+		<ul class="list">
+			<f:for each="{issues}" as="issue">
+			<li>
+				<f:link.action action="tasks" arguments="{number: issue.number, repository: issue.repository.full_name}">
+					<img src="{issue.user.avatar_url}" width="32px" />
+					<b>{issue.title}</b>
+				</f:link.action>
+			</li>
+			</f:for>
+	  	</ul>
+	</aside>
+	<div class="content">
+		<section class="header">
+			<img src="{currentIssue.user.avatar_url}" width="48px" class="pull-left"/>
+			<h1>{currentIssue.title}</h1>
+			<p>{currentIssue.user.login} created this issue {currentIssue.created_at} ago and assigned it to {currentIssue.assignee.login}</p>
+		</section>
+		<section class="body">
+	        <f:format.raw>{currentIssue.body_html}</f:format.raw>
+	    </section>
+		<section class="comments">
+			<f:for each="{currentIssue.comments}" as="comment">
+			<div class="comment">
+				<img src="{comment.user.avatar_url}" width="32px" class="pull-left"/>
+				<h3>{comment.user.login} commented {comment.created_at} ago</h3>
+	        	<f:format.raw>{comment.body_html}</f:format.raw>
+	        </div>
+	    	</f:for>
+	    </section>
+	</div>
+</f:section>

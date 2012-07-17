@@ -1,0 +1,51 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+	<aside class="navigation">
+		<ul class="list">
+			<f:for each="{projects}" as="project" key="id">
+			<li>
+				<f:link.action action="logins" arguments="{login: id}">
+				<b>{project.title}</b>
+				</f:link.action>
+			</li>
+			</f:for>
+	  	</ul>
+	</aside>
+	<div class="content">
+		<section class="header">
+			<h1>{context.title}</h1>
+		</section>
+		<section class="contexts">
+		<f:for each="{context.items}" as="item">
+			<div class="context-item well">
+				<h3>{item.title}</h3>
+				<f:if condition="{item.fields}">
+					<dl class="dl-horizontal">
+					<f:for each="{item.fields}" as="value" key="field">
+						<dt>{field}</dt><dd>{value}</dd>
+					</f:for>
+					</dl>
+				</f:if>
+
+				<f:if condition="{item.table}">
+					<table class="table table-striped table-bordered table-condensed">
+						<tr>
+							<f:for each="{item.table.0}" as="value" key="field">
+							<th>{field}</th>
+							</f:for>
+						</tr>
+					<f:for each="{item.table}" as="row">
+						<tr>
+						<f:for each="{row}" as="value" key="field">
+						<td>{value}</td>
+						</f:for>
+						</tr>
+					</f:for>
+					</table>
+				</f:if>
+			</div>
+		</f:for>
+		</section>
+	</div>
+</f:section>

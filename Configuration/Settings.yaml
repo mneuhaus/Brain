@@ -1,0 +1,79 @@
+Admin:
+  Beings:
+    Brain\Domain\Model\Access:
+      Properties:
+        variant:
+          OptionsProvider:
+            name: Array
+            options:
+              name,content: Simple
+              name,items: Group
+              name,host,username,password: SSH
+              name,url,username,password: Web Login
+              name,host,database,username,password: Database
+              name,yaml: YAML
+              name,tabular: Table
+
+Foo:
+  ContentManagement:
+    Annotations:
+      Brain\Domain\Model\User:
+        active: true
+        Properties: 
+          name: 
+            Inline: Foo.ContentManagement:InlineSeamless
+          actions: 
+            Ignore: true
+          electronicAddresses:
+            Ignore: true
+          primaryElectronicAddress:
+            Inline: Foo.ContentManagement:InlineSeamless
+          accounts:
+            Inline: Foo.ContentManagement:InlineSeamless
+
+      TYPO3\Party\Domain\Model\PersonName:
+        Properties:
+          title:
+            Ignore: true
+          otherName:
+            Ignore: true
+          middleName:
+            Ignore: true
+          fullName:
+            Ignore: true
+          alias:
+            Ignore: true
+
+      TYPO3\FLOW3\Security\Account:
+        Properties:
+          accountIdentifier:
+            Title: true
+          credentialsSource:
+            Ignore: true
+          credentialsSource:
+            Label: Passwort
+            #Ignore: true
+            Element: TYPO3.Form:SingleLineText
+          roles:
+            Ignore: true
+          creationDate:
+            Ignore: true
+          party:
+            Ignore: true
+          expirationDate:
+            Ignore: true
+          authenticationProviderName:
+            Ignore: true
+
+      TYPO3\Party\Domain\Model\ElectronicAddress:
+        Properties:
+          type:
+            Element: TYPO3.Form:SingleSelectDropdown
+            OptionsProvider: 
+              Name: ConstOptionsProvider
+              RegEx: TYPE_.+
+          usage:
+            Element: TYPO3.Form:SingleSelectDropdown
+            OptionsProvider: 
+              Name: ConstOptionsProvider
+              RegEx: USAGE_.+

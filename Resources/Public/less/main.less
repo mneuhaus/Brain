@@ -1,0 +1,55 @@
+@import "bootstrap.less";
+@import "layout.less";
+@import "list.less";
+@import "smartbar.less";
+
+@import "../lib/font-awesome/less/font-awesome.less";
+@import "../lib/jquery-mentions-input/jquery.mentionsInput.less";
+
+body, html {
+	height: 100%;
+}
+
+section.header {
+	border-bottom: 1px solid #a7a7a7;
+	padding: 20px;
+	background: white;
+
+	h1 {
+		text-overflow: ellipsis;
+		height: 34px;
+		overflow:hidden;
+		white-space:nowrap;
+		width: 50%;
+		display: inline-block;
+	}
+}
+
+section.body {
+	border-bottom: 1px solid #a7a7a7;
+	padding: 20px;
+	background: white;
+}
+
+section.comments {
+	padding: 20px;
+}
+
+.comment {
+	background: white;
+	border: 1px solid #eef0ef;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.context-item {
+	float: left;
+	min-width: 250px;
+	min-height: 100px;
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 0px;
+	border-bottom: 1px solid #a7a7a7;
+	padding: 20px;
+	background: white;
+}
