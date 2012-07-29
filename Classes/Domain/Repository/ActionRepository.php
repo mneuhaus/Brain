@@ -14,8 +14,9 @@ use TYPO3\FLOW3\Annotations as FLOW3;
  * @FLOW3\Scope("singleton")
  */
 class ActionRepository extends \TYPO3\FLOW3\Persistence\Repository {
-
-	// add customized methods here
-
+	/**
+	 * @var array
+	 */
+	protected $defaultOrderings = array('skippedTill' => "ASC");
 }
 ?>

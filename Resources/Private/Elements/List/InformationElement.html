@@ -1,0 +1,11 @@
+<div class="context-item well">
+	<h3>{item}</h3>
+
+	<f:if condition="{item.fields}">
+		<dl class="dl-horizontal">
+		<f:for each="{item.fields}" as="value" key="field">
+			<dt>{field}</dt><dd>{value}</dd>
+		</f:for>
+		</dl>
+	</f:if>
+</div>

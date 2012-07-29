@@ -28,6 +28,9 @@ class Context {
 	 */
 	protected $title = "";
 
+	public function __toString() {
+		return $this->getTag();
+	}
 
 	/**
 	 * Get the Context's tag

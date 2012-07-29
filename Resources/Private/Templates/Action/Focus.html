@@ -1,0 +1,48 @@
+<f:layout name="Default" />
+{namespace b=Brain\ViewHelpers}
+
+<f:section name="Content">
+	<aside class="navigation">
+		<ul class="list">
+			<f:for each="{actions}" as="action">
+			<li>
+				<f:link.action action="focus" arguments="{action: action}">
+					<b:gravatar email="{action.assignee.email}" size="32"/>
+					<b>{action.title}</b>
+				</f:link.action>
+			</li>
+			</f:for>
+	  	</ul>
+	</aside>
+	<div class="content">
+		<section class="header">
+			<b:gravatar email="{currentAction.assignee.email}" size="48"/>
+			<h1>{currentAction.title}</h1>
+			<p>{currentAction.owner.username} created this issue [creationDate] ago and assigned it to {currentAction.assignee.username}</p>
+
+			<div class="pull-right">
+				<div class="btn-group">
+					<f:link.action action="skip" arguments="{for: '2592000', action: currentAction}" class="btn" >1 Month</f:link.action>
+					<f:link.action action="skip" arguments="{for: '604800', action: currentAction}" class="btn" >1 Week</f:link.action>
+					<f:link.action action="skip" arguments="{for: '172800', action: currentAction}" class="btn" >2 Days</f:link.action>
+					<f:link.action action="skip" arguments="{for: '86400', action: currentAction}" class="btn" >1 Day</f:link.action>
+					<f:link.action action="skip" arguments="{for: '10800', action: currentAction}" class="btn" >3 Hours</f:link.action>
+					<f:link.action action="skip" arguments="{for: '3600', action: currentAction}" class="btn" >1 Hour</f:link.action>
+					<f:link.action action="skip" arguments="{for: '1', action: currentAction}" class="btn" >ASAP</f:link.action>
+				</div>
+			</div>
+		</section>
+		<section class="body">
+	        <f:format.raw>{currentIssue.body_html}</f:format.raw>
+	    </section>
+		<section class="comments">
+			<f:for each="{currentIssue.comments}" as="comment">
+			<div class="comment">
+				<img src="{comment.user.avatar_url}" width="32px" class="pull-left"/>
+				<h3>{comment.user.login} commented {comment.created_at} ago</h3>
+	        	<f:format.raw>{comment.body_html}</f:format.raw>
+	        </div>
+	    	</f:for>
+	    </section>
+	</div>
+</f:section>

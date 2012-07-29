@@ -1,0 +1,16 @@
+#                                                                        #
+# Security policy for the TYPO3 package                                  #
+#                                                                        #
+
+resources:
+  methods:
+    Brain_ActionController: 'method(Brain\Controller\ActionController->.*Action())'
+
+roles:
+  Administrator: [ Editor ]
+  Editor: []
+
+acls:
+  Administrator:
+    methods:
+      Brain_ActionController: GRANT

@@ -59,7 +59,7 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	public function authenticateAction() {
 		try {
 			$this->authenticationManager->authenticate();
-			$this->redirect('index', 'Standard');
+			$this->redirect('index', 'Action');
 		} catch (\TYPO3\FLOW3\Security\Exception\AuthenticationRequiredException $exception) {
 			$this->addFlashMessage('Wrong username or password.');
 			throw $exception;

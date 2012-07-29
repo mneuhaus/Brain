@@ -1,0 +1,22 @@
+<f:layout name="TYPO3.Form:Field" />
+<f:section name="field">
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery("[data-behavior='variantSwitcher']").live("change", function(){
+				var select = jQuery(this);
+				if(select.val() == "")
+					return;
+				var container = select.parents("fieldset").first();
+				var properties = select.val().split(",");
+				container.find(".control-group").hide();
+				select.parents(".control-group").first().show();
+				for(i in properties){
+					var e = container.find("[data-property='item." + properties[i] + "']");
+				//	container.append(e);
+					e.fadeIn();
+				}
+			}).change();
+		});
+	</script>
+	<f:form.select property="{element.identifier}" id="{element.uniqueIdentifier}" options="{element.properties.options}" class="xlarge" errorClass="{element.properties.elementErrorClassAttribute}" additionalAttributes="{data-behavior: 'variantSwitcher'}" />
+</f:section>

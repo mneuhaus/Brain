@@ -1,22 +1,7 @@
 <f:layout name="Default" />
 {namespace b=Brain\ViewHelpers}
-<f:section name="Title">Index view of User controller</f:section>
+{namespace cm=Foo\ContentManagement\ViewHelpers}
 
 <f:section name="Content">
-	<div class="content">
-		<section class="header">
-			<div class="pull-right">
-				<f:link.action action="new" class="btn btn-info"><i class="icon-plus"></i></f:link.action>
-			</div>
-		</section>
-		<section class="body">
-			<f:for each="{users}" as="user">
-				<div class="well pull-left">
-					<b:gravatar email="{user.email}" />
-					<b>{user.username}</b>
-					<f:link.action action="edit" arguments="{user: user}">edit</f:link.action>
-				</div>
-			</f:for>
-	    </section>
-	</div>
+	<cm:render.action controller="Foo\ContentManagement\Controller\ListController" class="\Brain\Domain\Model\User" />
 </f:section>

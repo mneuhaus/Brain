@@ -1,22 +1,40 @@
-Admin:
-  Beings:
-    Brain\Domain\Model\Access:
-      Properties:
-        variant:
-          OptionsProvider:
-            name: Array
-            options:
-              name,content: Simple
-              name,items: Group
-              name,host,username,password: SSH
-              name,url,username,password: Web Login
-              name,host,database,username,password: Database
-              name,yaml: YAML
-              name,tabular: Table
+TYPO3:
+  FLOW3:
+    security:
+      enable: TRUE
+      authentication:
+        providers:
+          BrainProvider:
+            provider: PersistedUsernamePasswordProvider
+            entryPoint: 'WebRedirect'
+            entryPointOptions:
+              uri: brain/login
+
+  Form:
+    presets:
+      contentManagement:
+        formElementTypes:
+          'Brain:VariantSelector':
+            superTypes: ['TYPO3.Form:FormElement', 'TYPO3.Form:SelectionMixin']
 
 Foo:
   ContentManagement:
     Annotations:
+      Brain\Domain\Model\Information:
+        Properties:
+          variant:
+            OptionsProvider:
+              name: Array
+              options:
+                name,contexts,content: Simple
+                name,contexts,items: Group
+                name,contexts,host,username,password: SSH
+                name,contexts,host,username,password: FTP
+                name,contexts,url,username,password: Web Login
+                name,contexts,host,database,username,password: Database
+                name,contexts,yaml: YAML
+                name,contexts,tabular: Table
+
       Brain\Domain\Model\User:
         active: true
         Properties: 

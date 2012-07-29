@@ -1,0 +1,10 @@
+prototype(Brain.ListController.InformationIndex) < prototype(Foo.ContentManagement.ListController.DefaultIndex)
+prototype(Brain.ListController.InformationIndex) {
+	templatePath = 'resource://Brain/Private/Elements/List/Information/List.html'
+	elementType = 'Brain:List.InformationElement'
+}
+
+prototype(Brain:List.InformationElement) < prototype(Foo.ContentManagement:List.DefaultElement)
+prototype(Brain:List.InformationElement) {
+	templatePath = 'resource://Brain/Private/Elements/List/Information/Element.html'
+}
