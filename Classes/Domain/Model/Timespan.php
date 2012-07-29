@@ -37,6 +37,62 @@ class Timespan {
      */
     protected $start;
 
+    /**
+     * @return \Brain\Domain\Model\Action
+     */
+    public function getAction() {
+        return $this->action;
+    }
+
+    /**
+     * @param \Brain\Domain\Model\Action $action
+     */
+    public function setAction($action) {
+        $this->action = $action;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getBilled() {
+        return $this->billed;
+    }
+
+    /**
+     * @param boolean $billed
+     */
+    public function setBilled($billed) {
+        $this->billed = $billed;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEnd() {
+        return $this->end;
+    }
+
+    /**
+     * @param \DateTime $end
+     */
+    public function setEnd($end) {
+        $this->end = $end;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getStart() {
+        return $this->start;
+    }
+
+    /**
+     * @param \DateTime $start
+     */
+    public function setStart($start) {
+        $this->start = $start;
+    }
+
 }
 
 ?>

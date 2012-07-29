@@ -17,39 +17,23 @@ use Doctrine\ORM\Mapping as ORM;
 class Action {
 
     /**
-     * @var \Doctrine\Common\Collections\Collection<\Brain\Domain\Model\Timespan>
-     * @ORM\OneToMany(mappedBy="action", cascade={"persist"})
-     */
-    protected $timespans;
-    
-    /**
-     * 
-     * @var boolean
-     */
-    protected $completed = false;
-
-    /**
-     * @param  $completed
-     */
-    public function setCompleted($completed) {
-        $this->completed = $completed;
-    }
-    
-    /**
-     * @return 
-     */
-    public function getCompleted() {
-        return $this->completed;
-    }
-
-
-
-    /**
      * The assignee
      * @var \Brain\Domain\Model\User
      * @ORM\ManyToOne()
      */
     protected $assignee;
+
+    /**
+     *
+     * @var boolean
+     */
+    protected $burning = false;
+
+    /**
+     *
+     * @var boolean
+     */
+    protected $completed = false;
 
     /**
      * @FLOW3\Inject
@@ -88,6 +72,12 @@ class Action {
     protected $skippedTill;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection<\Brain\Domain\Model\Timespan>
+     * @ORM\OneToMany(mappedBy="action", cascade={"persist"})
+     */
+    protected $timespans;
+
+    /**
      * The title
      * @var string
      */
@@ -104,20 +94,8 @@ class Action {
      */
     public function __construct() {
         $this->contexts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->timespans = new \Doctrine\Common\Collections\ArrayCollection();
         $this->creationDate = new \DateTime();
-    }
-
-    /**
-     * Sets this Action's contexts
-     *
-     * @param mixed $contexts The Action's contexts
-     * @return void
-     */
-    public function addContext($context) {
-        if (is_string($context)) {
-            $context = $this->contextRepository->get($context);
-        }
-        $this->contexts->add($context);
     }
 
     /**
@@ -127,60 +105,6 @@ class Action {
      */
     public function getAssignee() {
         return $this->assignee;
-    }
-
-    /**
-     * Get the Action's contexts
-     *
-     * @return array The Action's contexts
-     */
-    public function getContexts() {
-        return $this->contexts;
-    }
-
-    /**
-     * Get the Action's creation date
-     *
-     * @return \DateTime The Action's creation date
-     */
-    public function getCreationDate() {
-        return $this->creationDate;
-    }
-
-    /**
-     * Get the Action's description
-     *
-     * @return string The Action's description
-     */
-    public function getDescription() {
-        return $this->description;
-    }
-
-    /**
-     * Get the Action's owner
-     *
-     * @return \Brain\Domain\Model\User The Action's owner
-     */
-    public function getOwner() {
-        return $this->owner;
-    }
-
-    /**
-     * Get the Action's creation date
-     *
-     * @return \DateTime The Action's creation date
-     */
-    public function getSkippedTill() {
-        return $this->skippedTill;
-    }
-
-    /**
-     * Get the Action's title
-     *
-     * @return string The Action's title
-     */
-    public function getTitle() {
-        return $this->title;
     }
 
     /**
@@ -198,6 +122,70 @@ class Action {
     }
 
     /**
+     * @return boolean
+     */
+    public function getBurning() {
+        return $this->burning;
+    }
+
+    /**
+     * @param boolean $burning
+     */
+    public function setBurning($burning) {
+        $this->burning = $burning;
+    }
+
+    /**
+    * TODO: Document this Method! ( toggleBurning )
+    */
+    public function toggleBurning() {
+        $this->burning = !$this->burning;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getCompleted() {
+        return $this->completed;
+    }
+
+    /**
+     * @param boolean $completed
+     */
+    public function setCompleted($completed) {
+        $this->completed = $completed;
+    }
+
+    /**
+    * TODO: Document this Method! ( toggleCompleted )
+    */
+    public function toggleCompleted() {
+        $this->completed = !$this->completed;
+    }
+
+    /**
+     * Sets this Action's contexts
+     *
+     * @param mixed $contexts The Action's contexts
+     * @return void
+     */
+    public function addContext($context) {
+        if (is_string($context)) {
+            $context = $this->contextRepository->get($context);
+        }
+        $this->contexts->add($context);
+    }
+
+    /**
+     * Get the Action's contexts
+     *
+     * @return array The Action's contexts
+     */
+    public function getContexts() {
+        return $this->contexts;
+    }
+
+    /**
      * Sets this Action's contexts
      *
      * @param array $contexts The Action's contexts
@@ -205,6 +193,15 @@ class Action {
      */
     public function setContexts(array $contexts) {
         $this->contexts = $contexts;
+    }
+
+    /**
+     * Get the Action's creation date
+     *
+     * @return \DateTime The Action's creation date
+     */
+    public function getCreationDate() {
+        return $this->creationDate;
     }
 
     /**
@@ -218,6 +215,15 @@ class Action {
     }
 
     /**
+     * Get the Action's description
+     *
+     * @return string The Action's description
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+
+    /**
      * Sets this Action's description
      *
      * @param string $description The Action's description
@@ -225,6 +231,15 @@ class Action {
      */
     public function setDescription($description) {
         $this->description = $description;
+    }
+
+    /**
+     * Get the Action's owner
+     *
+     * @return \Brain\Domain\Model\User The Action's owner
+     */
+    public function getOwner() {
+        return $this->owner;
     }
 
     /**
@@ -238,6 +253,15 @@ class Action {
     }
 
     /**
+     * Get the Action's creation date
+     *
+     * @return \DateTime The Action's creation date
+     */
+    public function getSkippedTill() {
+        return $this->skippedTill;
+    }
+
+    /**
      * Sets this Action's creation date
      *
      * @param \DateTime $skippedTill The Action's creation date
@@ -245,6 +269,29 @@ class Action {
      */
     public function setSkippedTill($skippedTill) {
         $this->skippedTill = $skippedTill;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection<\Brain\Domain\Model\Timespan>
+     */
+    public function getTimespans() {
+        return $this->timespans;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection<\Brain\Domain\Model\Timespan> $timespans
+     */
+    public function setTimespans($timespans) {
+        $this->timespans = $timespans;
+    }
+
+    /**
+     * Get the Action's title
+     *
+     * @return string The Action's title
+     */
+    public function getTitle() {
+        return $this->title;
     }
 
     /**
