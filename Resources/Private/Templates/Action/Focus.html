@@ -17,8 +17,16 @@
 	<div class="content">
 		<section class="header">
 			<b:gravatar email="{currentAction.assignee.email}" size="48"/>
+			<f:if condition="{currentAction.burning}"><i class="icon-fire danger pull-right" title="Burning"></i></f:if>
 			<h1>{currentAction.title}</h1>
 			<p>{currentAction.owner.username} created this issue [creationDate] ago and assigned it to {currentAction.assignee.username}</p>
+			
+			<div class="pull-right">
+				<div class="btn-group">
+					<f:link.action action="complete" arguments="{action: currentAction}" class="btn" >Done</f:link.action>
+					<f:link.action action="burning" arguments="{action: currentAction}" class="btn" >Burning</f:link.action>
+				</div>
+			</div>
 
 			<div class="pull-right">
 				<div class="btn-group">
