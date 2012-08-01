@@ -43,6 +43,7 @@ Foo:
           actions: 
             Ignore: true
           electronicAddresses:
+            Inline: Foo.ContentManagement:InlineTabular
             Ignore: true
           primaryElectronicAddress:
             Inline: Foo.ContentManagement:InlineSeamless

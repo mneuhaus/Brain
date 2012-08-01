@@ -1,4 +1,5 @@
 <f:layout name="Default" />
+{namespace cm=Foo\ContentManagement\ViewHelpers}
 {namespace b=Brain\ViewHelpers}
 
 <f:section name="Content">
@@ -51,6 +52,7 @@
 	        	<f:format.raw>{comment.body_html}</f:format.raw>
 	        </div>
 	    	</f:for>
+			<cm:render.form class="\Brain\Domain\Model\Comment" controllerCallback="create" />
 	    </section>
 	</div>
 </f:section>

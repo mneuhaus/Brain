@@ -30,6 +30,12 @@ class Action {
     protected $burning = false;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection<\Brain\Domain\Model\Comment>
+     * @ORM\ManyToMany()
+     */
+    protected $comments;
+
+    /**
      *
      * @var boolean
      */
@@ -90,12 +96,21 @@ class Action {
     protected $userRepository;
 
     /**
-     * TODO: Document this Method! ( __construct )
+     *  @param \TYPO3\FLOW3\Security\Context $securityContext
      */
-    public function __construct() {
+    public function __construct(\TYPO3\FLOW3\Security\Context $securityContext) {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
         $this->contexts = new \Doctrine\Common\Collections\ArrayCollection();
         $this->timespans = new \Doctrine\Common\Collections\ArrayCollection();
         $this->creationDate = new \DateTime();
+        $this->owner = $securityContext->getParty();
+    }
+
+    /**
+    * TODO: Document this Method! ( __toString )
+    */
+    public function __toString() {
+        return $this->getTitle();
     }
 
     /**
@@ -136,10 +151,24 @@ class Action {
     }
 
     /**
-    * TODO: Document this Method! ( toggleBurning )
-    */
+     * TODO: Document this Method! ( toggleBurning )
+     */
     public function toggleBurning() {
         $this->burning = !$this->burning;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments() {
+        return $this->comments;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $comments
+     */
+    public function setComments($comments) {
+        $this->comments = $comments;
     }
 
     /**
@@ -157,8 +186,8 @@ class Action {
     }
 
     /**
-    * TODO: Document this Method! ( toggleCompleted )
-    */
+     * TODO: Document this Method! ( toggleCompleted )
+     */
     public function toggleCompleted() {
         $this->completed = !$this->completed;
     }
